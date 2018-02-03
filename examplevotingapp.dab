@@ -1,0 +1,65 @@
+{
+  "Services": {
+    "db": {
+      "Image": "postgres@sha256:4407092d1a5071933adf259b6a0da7b424a00897814fc48de42ed428a28f13b2", 
+      "Networks": [
+        "default"
+      ]
+    }, 
+    "redis": {
+      "Image": "redis@sha256:76017ed0df70e9e78188c7c032bc9621bde632ec6aad2af57373c0f86acbed4d", 
+      "Networks": [
+        "default"
+      ], 
+      "Ports": [
+        {
+          "Port": 6379, 
+          "Protocol": "tcp"
+        }
+      ]
+    }, 
+    "result": {
+      "Args": [
+        "nodemon", 
+        "server.js"
+      ], 
+      "Image": "bharathkumarraju/examplevotingapp_result_bkr@sha256:6aa16cc9b1471eecb608a5b4c1c27a17acc1214b0ea44d8b70268fd52e3c8006", 
+      "Networks": [
+        "default"
+      ], 
+      "Ports": [
+        {
+          "Port": 80, 
+          "Protocol": "tcp"
+        }, 
+        {
+          "Port": 5858, 
+          "Protocol": "tcp"
+        }
+      ]
+    }, 
+    "vote": {
+      "Args": [
+        "python", 
+        "app.py"
+      ], 
+      "Image": "bharathkumarraju/examplevotingapp_vote_bkr@sha256:ea749b790d847d971d36d582f341e8b9ab3f2f6b2caf6abc30a7caeb902518ce", 
+      "Networks": [
+        "default"
+      ], 
+      "Ports": [
+        {
+          "Port": 80, 
+          "Protocol": "tcp"
+        }
+      ]
+    }, 
+    "worker": {
+      "Image": "bharathkumarraju/examplevotingapp_worker_bkr@sha256:972d4b2cc1c24ff2062e7f21240422db915d80385ad2f27f0047470a55bdbadf", 
+      "Networks": [
+        "default"
+      ]
+    }
+  }, 
+  "Version": "0.1"
+}
